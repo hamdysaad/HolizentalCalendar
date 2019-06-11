@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Android Horizontal Calendar
 =================
 
@@ -105,3 +106,6 @@ To do
 
 * Make calendar more smooth
 * Adding new features
+=======
+# HolizentalCalendar
+>>>>>>> 764130081150742286d094564189efae8d235d6f
