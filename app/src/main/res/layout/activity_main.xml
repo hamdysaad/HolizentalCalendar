@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hedyhidoury.calendar.horizontalcalendar.MainActivity">
+
+    <com.hedyhidoury.calendar.horizontallibrary.HorizontalCalendarView
+        android:id="@+id/horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:dayNameLength="threeLetters"
+        app:selectedBgColor="#89cacf"
+        app:todaysDateBgColor="#89cacf"
+        app:todaysDateTextColor="@color/colorAccent"
+        app:calendarBgColor="@color/divider"
+        app:numOfPages="150"
+        app:daysTextColor="@android:color/black"
+        app:weekTypeFace="museosans.otf"
+        app:titleText="@string/app_name"
+        app:titleTextColor="@color/colorAccent"
+        android:padding="20dp"
+
+        app:monthTextColor="@color/colorAccent"/>
+
+</LinearLayout>
