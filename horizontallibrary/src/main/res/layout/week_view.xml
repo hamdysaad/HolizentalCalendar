@@ -9,7 +9,7 @@
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="start"
         android:horizontalSpacing="0dp"
         android:background="@android:color/transparent"
         android:listSelector="@android:color/transparent"

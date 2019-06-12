@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/colorAccent">
+    android:gravity="center">
+
     <TextView
         android:id="@+id/day_name"
         android:text="Mo"

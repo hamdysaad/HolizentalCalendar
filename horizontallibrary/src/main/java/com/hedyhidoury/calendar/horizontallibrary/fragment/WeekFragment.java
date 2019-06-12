@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.TypedArrayUtils;
+import android.util.LayoutDirection;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -235,11 +238,13 @@ public class WeekFragment extends Fragment {
                         dateTime, firstDay, selectedDateTime,false));
 //            }
 
+            Log.e("dddddddddddd" , gridView.getLayoutDirection() + "");
+
             int bgId = 0;
             if(position == 0)
-                bgId = R.drawable.left_rount_bg_white;
+                bgId =  gridView.getLayoutDirection() == LayoutDirection.LTR ? R.drawable.left_rount_bg_white : R.drawable.right_rount_bg_white;
             else if(position == days.size()-1)
-                bgId = R.drawable.right_rount_bg_white;
+                bgId =  gridView.getLayoutDirection() == LayoutDirection.LTR ? R.drawable.right_rount_bg_white : R.drawable.left_rount_bg_white ;
             else
                 bgId = R.drawable.bg_white;
 
