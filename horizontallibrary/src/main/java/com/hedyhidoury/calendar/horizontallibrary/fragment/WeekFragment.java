@@ -82,10 +82,10 @@ public class WeekFragment extends Fragment {
 //        }
         // Getting all seven days
         if(Locale.getDefault().getLanguage().equals("ar")){
-
+//
             for (int i = 3; i >= -3; i--)
                 days.add(midDate != null ? midDate.plusDays(i) : null);
-
+//
         }else {
             for (int i = -3; i <= 3; i++)
                 days.add(midDate != null ? midDate.plusDays(i) : null);
@@ -242,9 +242,9 @@ public class WeekFragment extends Fragment {
 
             int bgId = 0;
             if(position == 0)
-                bgId =  gridView.getLayoutDirection() == LayoutDirection.LTR ? R.drawable.left_rount_bg_white : R.drawable.right_rount_bg_white;
+                bgId = R.drawable.left_rount_bg_white;
             else if(position == days.size()-1)
-                bgId =  gridView.getLayoutDirection() == LayoutDirection.LTR ? R.drawable.right_rount_bg_white : R.drawable.left_rount_bg_white ;
+                bgId = R.drawable.right_rount_bg_white;
             else
                 bgId = R.drawable.bg_white;
 
