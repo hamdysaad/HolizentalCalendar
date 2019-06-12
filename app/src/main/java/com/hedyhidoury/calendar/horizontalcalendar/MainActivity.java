@@ -6,6 +6,9 @@ import android.widget.Toast;
 
 import com.hedyhidoury.calendar.horizontallibrary.HorizontalCalendarView;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnDatePickedListener;
+import com.hedyhidoury.calendar.horizontallibrary.listener.OnDayClickListener;
+
+import org.joda.time.DateTime;
 
 import java.util.Date;
 
@@ -15,11 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HorizontalCalendarView horizontalCalendarView = (HorizontalCalendarView)findViewById(R.id.horizontal);
-        horizontalCalendarView.setDatePickedListener(new OnDatePickedListener() {
+        HorizontalCalendarView horizontalCalendarView = (HorizontalCalendarView) findViewById(R.id.horizontal);
+
+        horizontalCalendarView.setOnDayClickListner(new OnDayClickListener() {
             @Override
-            public void OnDatePicked(Date datePicked) {
-                Toast.makeText(MainActivity.this,datePicked.toString(),Toast.LENGTH_SHORT).show();
+            public void onDateClick(DateTime dateTime) {
+                Toast.makeText(MainActivity.this, dateTime.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }

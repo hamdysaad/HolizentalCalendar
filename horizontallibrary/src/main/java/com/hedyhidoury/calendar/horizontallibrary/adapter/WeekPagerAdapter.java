@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.BusProvider;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.Event;
 import com.hedyhidoury.calendar.horizontallibrary.fragment.WeekFragment;
+import com.hedyhidoury.calendar.horizontallibrary.listener.OnDayClickListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnMonthChangeListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnWeekChangeListener;
 
@@ -32,6 +33,9 @@ public class WeekPagerAdapter extends FragmentStatePagerAdapter {
     private DateTime date;
     private OnWeekChangeListener listener;
     private OnMonthChangeListener monthListener;
+    private OnDayClickListener onDayClickListner;
+
+
 
     public WeekPagerAdapter(FragmentManager fm, DateTime date, OnWeekChangeListener listener, OnMonthChangeListener monthListener) {
         super(fm);
@@ -43,6 +47,8 @@ public class WeekPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         WeekFragment fragment = new WeekFragment();
+
+        fragment.setOnDayClickListner(onDayClickListner);
 
         Bundle bundle = new Bundle();
 
@@ -184,6 +190,14 @@ public class WeekPagerAdapter extends FragmentStatePagerAdapter {
 
     public DateTime getCurrentDate() {
         return date;
+    }
+
+    public void setOnDayClickListner(OnDayClickListener onDayClickListner) {
+        this.onDayClickListner = onDayClickListner;
+    }
+
+    public OnDayClickListener getOnDayClickListner() {
+        return onDayClickListner;
     }
 
 

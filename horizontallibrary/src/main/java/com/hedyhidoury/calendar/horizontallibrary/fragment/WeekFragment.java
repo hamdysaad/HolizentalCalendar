@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.hedyhidoury.calendar.horizontallibrary.R;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.BusProvider;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.Event;
+import com.hedyhidoury.calendar.horizontallibrary.listener.OnDayClickListener;
 import com.squareup.otto.Subscribe;
 
 import org.joda.time.DateTime;
@@ -48,8 +49,12 @@ public class WeekFragment extends Fragment {
     private DateTime startDate; // start date of the week
     private DateTime endDate; // end date of the week
     private boolean isVisible;
+    private OnDayClickListener onDayClickListner;
 
 
+    public void setOnDayClickListner(OnDayClickListener onDayClickListner) {
+        this.onDayClickListner = onDayClickListner;
+    }
 
     @Nullable
     @Override
@@ -69,12 +74,19 @@ public class WeekFragment extends Fragment {
         ArrayList<DateTime> days = new ArrayList<>();
         // get date time from args
         DateTime midDate = (DateTime) getArguments().getSerializable(DATE_KEY);
-        if (midDate != null) {
-            midDate = midDate.withDayOfWeek(DateTimeConstants.THURSDAY);
-        }
+//        if (midDate != null) {
+//            midDate = midDate.withDayOfWeek(DateTimeConstants.THURSDAY);
+//        }
         // Getting all seven days
-        for (int i = -3; i <= 3; i++)
-            days.add(midDate != null ? midDate.plusDays(i) : null);
+        if(Locale.getDefault().getLanguage().equals("ar")){
+
+            for (int i = 3; i >= -3; i--)
+                days.add(midDate != null ? midDate.plusDays(i) : null);
+
+        }else {
+            for (int i = -3; i <= 3; i++)
+                days.add(midDate != null ? midDate.plusDays(i) : null);
+        }
 
         startDate = days.get(0);
         endDate = days.get(days.size() - 1);
@@ -87,11 +99,13 @@ public class WeekFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // if item clicked is not in the invalidated dates, make necessary changes
 
-                    BusProvider.getInstance().post(new Event.OnDateClickEvent(weekAdapter.getItem
-                            (position)));
+                    BusProvider.getInstance().post(new Event.OnDateClickEvent(weekAdapter.getItem(position)));
+
                     isDateSelected = true;
                     selectedDateTime = weekAdapter.getItem(position);
                     BusProvider.getInstance().post(new Event.InvalidateEvent());
+
+                    onDayClickListner.onDateClick(weekAdapter.getItem(position));
 
 
             }
@@ -206,9 +220,12 @@ public class WeekFragment extends Fragment {
             dayTextView.setText(String.valueOf(dateTime.getDayOfMonth()));
             // set the day name with 2 chars with first one as uppercase
             DateTime.Property pDoW = dateTime.dayOfWeek();
-            String dayName = pDoW.getAsText(Locale.getDefault()).substring(0,2);
+            String dayName = Locale.getDefault().getLanguage().equals("ar") ?
+                    pDoW.getAsText(Locale.getDefault()):
+                    pDoW.getAsText(Locale.getDefault()).substring(0,2);
+
             // // TODO: 8/17/2017 make day name view on decorator
-            dayNameView.setText(dayName.substring(0, 1).toUpperCase()+dayName.substring(1));
+            dayNameView.setText(dayName);
 //            if(inValidatedDays.contains(position + 1)){
 //                BusProvider.getInstance().post(new Event.OnDayDecorateEvent(convertView, dayTextView,dayNameView,
 //                        dateTime, firstDay, selectedDateTime,true));

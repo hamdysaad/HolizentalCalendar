@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.hedyhidoury.calendar.horizontallibrary.R;
 import com.hedyhidoury.calendar.horizontallibrary.decorator.DayDecorator;
 import com.hedyhidoury.calendar.horizontallibrary.fragment.WeekFragment;
+import com.hedyhidoury.calendar.horizontallibrary.listener.OnDatePickedListener;
 
 import org.joda.time.DateTime;
 
@@ -52,12 +53,19 @@ public class DefaultDayDecorator implements DayDecorator {
         this.textColor = textColor;
         this.textSize = textSize;
         this.weekTypeFace = weekTypeFace;
+
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void decorate(View view, TextView dayTextView,
-                         TextView dayNameTextView, DateTime dateTime, DateTime firstDayOfTheWeek, DateTime selectedDateTime) {
+    public void decorate(
+            View view,
+            TextView dayTextView,
+            TextView dayNameTextView,
+            DateTime dateTime,
+            DateTime firstDayOfTheWeek,
+            DateTime selectedDateTime) {
+
         //DateTime dt = new DateTime();
 
         Drawable holoCircle = ContextCompat.getDrawable(context, R.drawable.holo_circle);
@@ -105,6 +113,7 @@ public class DefaultDayDecorator implements DayDecorator {
         dayTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         dayTextView.setTypeface(weekTypeFace);
         dayNameTextView.setTypeface(weekTypeFace);
+
     }
 
     @Override

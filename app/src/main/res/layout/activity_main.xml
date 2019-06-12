@@ -20,7 +20,7 @@
         app:weekTypeFace="museosans.otf"
         app:titleText="@string/app_name"
         app:titleTextColor="@color/colorAccent"
-        android:padding="20dp"
+        android:padding="0dp"
 
         app:monthTextColor="@color/colorAccent"/>
 

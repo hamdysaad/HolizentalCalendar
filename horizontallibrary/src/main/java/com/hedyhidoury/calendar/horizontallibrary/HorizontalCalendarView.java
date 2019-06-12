@@ -28,6 +28,7 @@ import com.hedyhidoury.calendar.horizontallibrary.eventbus.BusProvider;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.Event;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnDateClickListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnDatePickedListener;
+import com.hedyhidoury.calendar.horizontallibrary.listener.OnDayClickListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnMonthChangeListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnWeekChangeListener;
 import com.hedyhidoury.calendar.horizontallibrary.views.MonthPager;
@@ -78,7 +79,13 @@ public class HorizontalCalendarView extends LinearLayout implements
     private boolean isHourPicked = false;
     private String hourContent;
     private Date dateDayContent = new Date();
+    private OnDayClickListener onDayClickListner;
 
+    public void setOnDayClickListner(OnDayClickListener onDayClickListner) {
+        this.onDayClickListner = onDayClickListner;
+
+        weekPager.setOnDayClickListner(onDayClickListner);
+    }
 
     public HorizontalCalendarView(Context context) {
         super(context);
@@ -191,15 +198,9 @@ public class HorizontalCalendarView extends LinearLayout implements
             LayoutParams weekParamsLayout = new LayoutParams(LayoutParams.MATCH_PARENT,
                     (int) getResources().getDimension(R.dimen.full_week_view_height));
             weekPager = new WeekPager(getContext(), (int) (nbOfMonths * AVG_WEEKS_IN_MONTH), idCheck(), this, this);
+
+
             addView(weekPager, weekParamsLayout);
-
-            // Adding hours view
-            // all hours params
-            LayoutParams hoursLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            hoursLayoutParams.setMargins((int) getResources().getDimension(R.dimen.full_hours_text_margin),
-                    0, (int) getResources().getDimension(R.dimen.full_hours_text_margin), 0);
-
         }
 
         invalidate();

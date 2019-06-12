@@ -14,6 +14,7 @@ import com.hedyhidoury.calendar.horizontallibrary.adapter.WeekPagerAdapter;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.BusProvider;
 import com.hedyhidoury.calendar.horizontallibrary.eventbus.Event;
 import com.hedyhidoury.calendar.horizontallibrary.fragment.WeekFragment;
+import com.hedyhidoury.calendar.horizontallibrary.listener.OnDayClickListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnMonthChangeListener;
 import com.hedyhidoury.calendar.horizontallibrary.listener.OnWeekChangeListener;
 import com.squareup.otto.Subscribe;
@@ -34,6 +35,7 @@ public class WeekPager extends ViewPager {
     private DateTime currentDate = new DateTime();
     private OnWeekChangeListener listener;
     private OnMonthChangeListener monthListener;
+    private OnDayClickListener onDayClickListner;
 
     public WeekPager(Context context, int numOfWeeks, int viewId, OnWeekChangeListener listener, OnMonthChangeListener monthListener) {
         super(context);
@@ -76,10 +78,14 @@ public class WeekPager extends ViewPager {
      */
     private void initPager(DateTime dateTime) {
         pos = NUM_OF_PAGES / 2;
+
         adapter = new WeekPagerAdapter(((AppCompatActivity) getContext())
                 .getSupportFragmentManager(), dateTime, listener, monthListener);
+
+
+
         setAdapter(adapter);
-        addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        addOnPageChangeListener(new SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 if (!check)
@@ -172,4 +178,12 @@ public class WeekPager extends ViewPager {
         }
     }
 
+    public void setOnDayClickListner(OnDayClickListener onDayClickListner) {
+        this.onDayClickListner = onDayClickListner;
+        adapter.setOnDayClickListner(onDayClickListner);
+    }
+
+    public OnDayClickListener getOnDayClickListner() {
+        return onDayClickListner;
+    }
 }
