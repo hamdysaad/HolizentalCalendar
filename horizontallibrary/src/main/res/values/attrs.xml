@@ -2,6 +2,22 @@
 <resources>
     <declare-styleable name="HorizontalCalendarView">
 
+
+
+
+
+        <attr name="dayNameTextColor" format="color"/>
+        <attr name="dayNameTextSelectedColor" format="color"/>
+
+        <attr name="dayValueBgColor" format="color"/>
+        <attr name="SelectedDayValueBgColor" format="color"/>
+
+
+        <attr name="dayValueTextColor" format="color"/>
+        <attr name="SelecteDayValueTextColor" format="color"/>
+
+
+
         <attr name="titleText" format="string"/>
         <attr name="titleTextSize" format="dimension"/>
         <attr name="titleTextColor" format="color"/>

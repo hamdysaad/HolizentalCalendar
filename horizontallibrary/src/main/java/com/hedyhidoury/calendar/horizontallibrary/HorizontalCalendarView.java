@@ -109,12 +109,32 @@ public class HorizontalCalendarView extends LinearLayout implements
         if (attrs != null) {
 
 
-
             typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.HorizontalCalendarView);
+
+            /*  <attr name="dayNameTextColor" format="color"/>
+        <attr name="dayNameTextSelectedColor" format="color"/>
+
+        <attr name="dayValueBgColor" format="color"/>
+        <attr name="SelectedDayValueBgColor" format="color"/>
+
+
+        <attr name="dayValueTextColor" format="color"/>
+        <attr name="SelectedDayTextBgColor" format="color"/>*/
+
+
+            int dayValueBgColor = typedArray.getColor(R.styleable.HorizontalCalendarView_dayValueBgColor  , -1);
+            int SelectedDayValueBgColor = typedArray.getColor(R.styleable.HorizontalCalendarView_SelectedDayValueBgColor  , -1);
+            int dayValueTextColor = typedArray.getColor(R.styleable.HorizontalCalendarView_dayValueTextColor  , -1);
+            int SelecteDayValueTextColor = typedArray.getColor(R.styleable.HorizontalCalendarView_SelecteDayValueTextColor  , -1);
+
+
+            int dayNameTextColor = typedArray.getColor(R.styleable.HorizontalCalendarView_dayNameTextColor  , -1);
+            int dayNameTextSelectedColor = typedArray.getColor(R.styleable.HorizontalCalendarView_dayNameTextSelectedColor  , -1);
 
             String titleText = typedArray.getString(R.styleable.HorizontalCalendarView_titleText);
             float titleTextSize = typedArray.getDimension(R.styleable.HorizontalCalendarView_titleTextSize  , -1);
             int titleTextColor = typedArray.getColor(R.styleable.HorizontalCalendarView_titleTextColor  , -1);
+
 
             int monthTextColor = typedArray.getColor(R.styleable.HorizontalCalendarView_monthTextColor  , -1);
             float monthTextSize =typedArray.getDimension(R.styleable.HorizontalCalendarView_monthTextSize  , -1);
@@ -163,7 +183,14 @@ public class HorizontalCalendarView extends LinearLayout implements
                     todayDateTextColor,
                     daysTextColor,
                     daysTextSize
-                    , weekDayTypeFace));
+                    , weekDayTypeFace,
+                    dayNameTextColor,
+                    dayNameTextSelectedColor,
+
+                    dayValueBgColor,
+                    SelectedDayValueBgColor,
+                    dayValueTextColor,
+                    SelecteDayValueTextColor));
 
             setBackgroundColor(calendarBgColor);
 

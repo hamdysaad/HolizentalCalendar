@@ -21,7 +21,15 @@
         app:titleText="@string/app_name"
         app:titleTextColor="@color/colorAccent"
         android:padding="0dp"
+        app:monthTextColor="@color/colorAccent"
+        app:dayNameTextColor="#C2BEBE"
+        app:dayNameTextSelectedColor="#FA8B26"
 
-        app:monthTextColor="@color/colorAccent"/>
+        app:dayValueBgColor="@color/white"
+        app:SelectedDayValueBgColor="#FA8B26"
+        app:dayValueTextColor="#D220DB"
+        app:SelecteDayValueTextColor="@color/white"
+
+        />
 
 </LinearLayout>

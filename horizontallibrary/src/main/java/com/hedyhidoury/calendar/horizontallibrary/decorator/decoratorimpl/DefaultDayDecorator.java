@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 import com.hedyhidoury.calendar.horizontallibrary.R;
 import com.hedyhidoury.calendar.horizontallibrary.decorator.DayDecorator;
 import com.hedyhidoury.calendar.horizontallibrary.fragment.WeekFragment;
-import com.hedyhidoury.calendar.horizontallibrary.listener.OnDatePickedListener;
 
 import org.joda.time.DateTime;
 
@@ -31,6 +31,12 @@ import org.joda.time.DateTime;
  */
 public class DefaultDayDecorator implements DayDecorator {
 
+    private final int dayNameTextColor;
+    private final int dayNameTextSelectedColor;
+    private final int dayValueBgColor;
+    private final int selectedDayValueBgColor;
+    private final int dayValueTextColor;
+    private final int SelecteDayValueTextColor;
     private Context context;
     private final int selectedDateColor;
     private final int todayDateColor;
@@ -45,7 +51,13 @@ public class DefaultDayDecorator implements DayDecorator {
                                @ColorInt int todayDateTextColor,
                                @ColorInt int textColor,
                                float textSize,
-                               Typeface weekTypeFace) {
+                               Typeface weekTypeFace,
+                               int dayNameTextColor,
+                               int dayNameTextSelectedColor,
+                               int dayValueBgColor,
+                               int selectedDayValueBgColor,
+                               int dayValueTextColor,
+                               int SelecteDayValueTextColor) {
         this.context = context;
         this.selectedDateColor = selectedDateColor;
         this.todayDateColor = todayDateColor;
@@ -53,6 +65,14 @@ public class DefaultDayDecorator implements DayDecorator {
         this.textColor = textColor;
         this.textSize = textSize;
         this.weekTypeFace = weekTypeFace;
+        this.dayNameTextColor = dayNameTextColor;
+        this.dayNameTextSelectedColor = dayNameTextSelectedColor;
+
+        this.dayValueBgColor = dayValueBgColor;
+        this.selectedDayValueBgColor = selectedDayValueBgColor;
+        this.dayValueTextColor = dayValueTextColor;
+
+        this.SelecteDayValueTextColor = SelecteDayValueTextColor;
 
     }
 
@@ -69,10 +89,18 @@ public class DefaultDayDecorator implements DayDecorator {
         //DateTime dt = new DateTime();
 
         Drawable holoCircle = ContextCompat.getDrawable(context, R.drawable.holo_circle);
-        Drawable solidCircle = ContextCompat.getDrawable(context, R.drawable.solid_circle);
+//        Drawable solidCircle = ContextCompat.getDrawable(context, R.drawable.solid_circle);
+        LayerDrawable solidCircle = (LayerDrawable)ContextCompat.getDrawable(context, R.drawable.solid_circle);
+        Drawable solidWhiteCircle = ContextCompat.getDrawable(context, R.drawable.solid_white_circle);
 
-        holoCircle.setColorFilter(selectedDateColor, PorterDuff.Mode.SRC_ATOP);
-        solidCircle.setColorFilter(todayDateColor, PorterDuff.Mode.SRC_ATOP);
+        holoCircle.setColorFilter(selectedDayValueBgColor, PorterDuff.Mode.SRC_ATOP);
+        solidCircle.getDrawable(1).mutate().setColorFilter(selectedDayValueBgColor, PorterDuff.Mode.SRC_ATOP);
+        solidWhiteCircle.setColorFilter(dayValueBgColor, PorterDuff.Mode.SRC_ATOP);
+
+
+//        final LayerDrawable layerDrawable = solidCircle.mutate();
+//        layerDrawable.getDrawable(index).mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
+
         // solidCircle.mutate().setAlpha(200);
         //holoCircle.mutate().setAlpha(200);
 
@@ -87,9 +115,10 @@ public class DefaultDayDecorator implements DayDecorator {
         // testing to see if selected date ot not
         if (dateTime.toLocalDate().equals(calendarStartDate.toLocalDate())) {
             dayTextView.setBackground(solidCircle);
-            dayTextView.setTextColor(this.todayDateTextColor);
+            dayTextView.setTextColor(selectedDayValueBgColor);
         } else {
-            dayTextView.setTextColor(textColor);
+            dayTextView.setTextColor(dayValueTextColor);
+            dayTextView.setBackground(solidWhiteCircle);
         }
 
 
@@ -97,12 +126,13 @@ public class DefaultDayDecorator implements DayDecorator {
             if (selectedDateTime.toLocalDate().equals(dateTime.toLocalDate())) {
                 if (!selectedDateTime.toLocalDate().equals(calendarStartDate.toLocalDate()))
                     dayTextView.setBackground(solidCircle);
-                    dayTextView.setTextColor(this.todayDateTextColor);
-                    dayNameTextView.setTextColor(this.todayDateTextColor);
+                    dayTextView.setTextColor(this.SelecteDayValueTextColor);
+                    dayNameTextView.setTextColor(this.dayNameTextSelectedColor);
             } else {
-                dayTextView.setTextColor(textColor);
-                dayNameTextView.setTextColor(textColor);
-                dayTextView.setBackground(null);
+                dayTextView.setBackground(solidWhiteCircle);
+                dayTextView.setTextColor(dayValueTextColor);
+                dayNameTextView.setTextColor(dayNameTextColor);
+
             }
         }
 
