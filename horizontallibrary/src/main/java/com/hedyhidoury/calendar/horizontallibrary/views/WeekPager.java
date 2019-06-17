@@ -8,6 +8,7 @@ import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ViewGroup;
 
 
 import com.hedyhidoury.calendar.horizontallibrary.adapter.WeekPagerAdapter;
@@ -43,6 +44,13 @@ public class WeekPager extends ViewPager {
         this.monthListener = monthListener;
         setId(viewId);
         initialize(numOfWeeks);
+
+        LayoutParams layoutParam = new LayoutParams();
+
+        layoutParam.width = LayoutParams.MATCH_PARENT;
+        layoutParam.width = LayoutParams.WRAP_CONTENT;
+
+        setLayoutParams(new LayoutParams());
     }
 
     @Override

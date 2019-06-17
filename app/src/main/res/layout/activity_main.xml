@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.hedyhidoury.calendar.horizontalcalendar.MainActivity">
 
     <com.hedyhidoury.calendar.horizontallibrary.HorizontalCalendarView
@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:dayNameLength="threeLetters"
         app:selectedBgColor="#89cacf"
+        android:background="@color/colorPrimary"
         app:todaysDateBgColor="#89cacf"
         app:todaysDateTextColor="@color/colorAccent"
         app:calendarBgColor="@color/divider"
@@ -20,7 +21,7 @@
         app:weekTypeFace="museosans.otf"
         app:titleText="@string/app_name"
         app:titleTextColor="@color/colorAccent"
-        android:padding="0dp"
+        android:padding="20dp"
         app:monthTextColor="@color/colorAccent"
         app:dayNameTextColor="#C2BEBE"
         app:dayNameTextSelectedColor="#FA8B26"

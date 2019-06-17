@@ -78,7 +78,7 @@ public class WeekFragment extends Fragment {
         // get date time from args
         DateTime midDate = (DateTime) getArguments().getSerializable(DATE_KEY);
 //        if (midDate != null) {
-//            midDate = midDate.withDayOfWeek(DateTimeConstants.THURSDAY);
+            midDate = midDate.withDayOfWeek(DateTimeConstants.WEDNESDAY);
 //        }
         // Getting all seven days
         if(Locale.getDefault().getLanguage().equals("ar")){
