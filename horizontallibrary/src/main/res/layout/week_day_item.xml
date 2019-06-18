@@ -13,6 +13,8 @@
         android:textColor="@android:color/black"
         android:alpha="0.7"
         android:textSize="13dp"
+        android:lines="1"
+        android:ellipsize="end"
         android:padding="5dp"
         android:gravity="center"
         android:layout_marginBottom="10dp"
